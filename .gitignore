@@ -19,3 +19,6 @@ ENV/
 # OS junk
 .DS_Store
 Thumbs.db
+
+app.db
+frontend/node_modules/
