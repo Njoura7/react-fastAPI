@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { createUser, fetchUsers } from './api/users';
+import { createUser, fetchUsers, deleteUser } from './api/users';
 import type { UserCreate, UserOut } from './types/user';
+import { Trash } from 'lucide-react';
 
 function App() {
   const [users, setUsers] = useState<UserOut[]>([]);
@@ -44,10 +45,17 @@ function App() {
         {users.map((u) => (
           <li key={u.id}>
             {u.name} - {u.email}
+            <button
+              onClick={async () => {
+                await deleteUser(u.id);
+                loadUsers()
+              }}>
+              Delete <Trash />
+            </button>
           </li>
         ))}
       </ul>
-    </div>
+    </div >
   );
 }
 
